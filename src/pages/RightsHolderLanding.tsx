@@ -15,6 +15,33 @@ const RightsHolderLanding = () => {
     { label: "Successful Campaigns", value: "1,200+", icon: Target },
   ];
 
+  const featuredEvents = [
+    {
+      title: "Premier League Final Day",
+      date: "28 May 2024",
+      image: "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=800&h=400&fit=crop",
+      creators: 245,
+      reach: "12.5M",
+      sponsorValue: "£850K"
+    },
+    {
+      title: "Wimbledon Championships",
+      date: "15 July 2024", 
+      image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=400&fit=crop",
+      creators: 180,
+      reach: "8.2M",
+      sponsorValue: "£620K"
+    },
+    {
+      title: "F1 British Grand Prix",
+      date: "7 July 2024",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop", 
+      creators: 320,
+      reach: "18.7M",
+      sponsorValue: "£1.2M"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -33,12 +60,12 @@ const RightsHolderLanding = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 leading-tight">
-              Amplify Your Sports Content to 
-              <span className="text-[hsl(var(--sports-accent))]"> Millions of Engaged Fans</span>
+              Turn Your Sports Rights Into
+              <span className="text-[hsl(var(--sports-accent))]"> £Millions in Revenue</span>
             </h1>
             <p className="text-xl mb-8 opacity-90 leading-relaxed">
-              Turn your sports rights into revenue through our verified creator network. 
-              Reach 25M+ monthly viewers with data-driven creator partnerships.
+              Premier League to F1 - amplify your sports content through our verified creator network. 
+              Reach 25M+ monthly viewers with data-driven partnerships that deliver real ROI.
             </p>
             
             {/* Email Signup */}
@@ -55,7 +82,7 @@ const RightsHolderLanding = () => {
                   Get Started
                 </Button>
               </div>
-              <p className="text-sm mt-2 opacity-75">Join 500+ sports organizations</p>
+              <p className="text-sm mt-2 opacity-75">Join 500+ sports organisations • Average ROI: 340%</p>
             </div>
 
             {/* Trust Badges */}
@@ -89,53 +116,109 @@ const RightsHolderLanding = () => {
         </div>
       </section>
 
+      {/* Featured Events */}
+      <section className="py-20 bg-gradient-to-b from-muted/20 to-transparent">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Recent Success Stories</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              See how top sports organisations maximised their reach and revenue through our platform
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {featuredEvents.map((event, index) => (
+              <Card key={index} className="overflow-hidden hover-scale group cursor-pointer">
+                <div className="relative h-48">
+                  <img 
+                    src={event.image} 
+                    alt={event.title}
+                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <Badge className="bg-[hsl(var(--sports-accent))] text-white mb-2">
+                      COMPLETED
+                    </Badge>
+                    <h3 className="text-lg font-bold">{event.title}</h3>
+                    <p className="text-sm opacity-90">{event.date}</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-primary">{event.creators}</div>
+                      <div className="text-sm text-muted-foreground">Creators</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-primary">{event.reach}</div>
+                      <div className="text-sm text-muted-foreground">Total Reach</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[hsl(var(--sports-accent))]">{event.sponsorValue}</div>
+                      <div className="text-sm text-muted-foreground">Sponsor Value</div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Value Propositions */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Maximize Reach with Data-Driven Partnerships</h2>
+            <h2 className="text-4xl font-bold mb-4">The Complete Sports Streaming Solution</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our platform connects you with the perfect creator mix to amplify your sports content
+              From creator discovery to sponsor reporting - everything you need to maximise your sports content ROI
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 hover-scale">
-              <BarChart3 className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-4">Intelligent Creator Clustering</h3>
+            <Card className="p-8 hover-scale relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[hsl(var(--sports-accent))]/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
+              <BarChart3 className="h-12 w-12 text-primary mb-4 relative z-10" />
+              <h3 className="text-xl font-semibold mb-4">AI-Powered Creator Clustering</h3>
               <p className="text-muted-foreground mb-4">
-                Our AI analyzes audience overlap and demographics to create optimal creator combinations that maximize reach without cannibalization.
+                Our machine learning algorithms analyse audience overlap, demographics, and engagement patterns to create optimal creator combinations that maximise reach without cannibalisation.
               </p>
               <div className="text-sm font-medium text-primary">
                 • 340% average reach increase
-                • Demographic optimization
+                • Zero audience overlap guarantee  
                 • Real-time ROI projections
+                • Demographic heat mapping
               </div>
             </Card>
 
-            <Card className="p-8 hover-scale">
-              <Play className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-4">Verified Creator Network</h3>
+            <Card className="p-8 hover-scale relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
+              <Play className="h-12 w-12 text-primary mb-4 relative z-10" />
+              <h3 className="text-xl font-semibold mb-4">Verified Creator Ecosystem</h3>
               <p className="text-muted-foreground mb-4">
-                Access 50,000+ verified creators across YouTube, Twitch, and Meta with proven track records in sports content streaming.
+                Access 50,000+ verified creators across YouTube, Twitch, and Meta with proven track records in sports content. Full rights compliance and quality guaranteed.
               </p>
               <div className="text-sm font-medium text-primary">
                 • Platform-native streaming
-                • Rights compliance guaranteed
+                • Rights compliance certified
                 • Quality content standards
+                • 24/7 creator support
               </div>
             </Card>
 
-            <Card className="p-8 hover-scale">
-              <DollarSign className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-4">Sponsor ROI Tracking</h3>
+            <Card className="p-8 hover-scale relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[hsl(var(--sports-accent))]/10 to-transparent rounded-full -translate-y-16 translate-x-16" />
+              <DollarSign className="h-12 w-12 text-primary mb-4 relative z-10" />
+              <h3 className="text-xl font-semibold mb-4">Enterprise Sponsor Reporting</h3>
               <p className="text-muted-foreground mb-4">
-                Demonstrate clear value to sponsors with real-time metrics, engagement analytics, and revenue attribution across all creator partnerships.
+                Demonstrate clear ROI to sponsors with real-time metrics, engagement analytics, and revenue attribution across all creator partnerships. Export ready pitch decks.
               </p>
               <div className="text-sm font-medium text-primary">
                 • Live performance dashboards
-                • Sponsor value reporting
+                • Automated sponsor reports
                 • Revenue attribution models
+                • Custom analytics APIs
               </div>
             </Card>
           </div>
@@ -149,7 +232,7 @@ const RightsHolderLanding = () => {
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Join leading sports organizations who've increased their reach by 340% through strategic creator partnerships.
           </p>
-          <Button variant="sports-accent" size="xl" className="mr-4">
+          <Button variant="sports-accent" size="xl" className="mr-4 shadow-[var(--shadow-professional)]">
             Schedule Demo
           </Button>
           <Button variant="outline" size="xl" className="bg-white/10 border-white/20 text-white hover:bg-white/20">

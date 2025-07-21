@@ -5,14 +5,35 @@ import { Gamepad2, Zap, DollarSign, Calendar, Users, Trophy, Youtube, Twitch } f
 
 const CreatorLanding = () => {
   const upcomingEvents = [
-    { name: "UEFA Champions League Final", date: "June 1", earnings: "$2,500-$8,000" },
-    { name: "NBA Finals Game 7", date: "June 16", earnings: "$3,200-$12,000" },
-    { name: "Wimbledon Men's Final", date: "July 14", earnings: "$1,800-$6,500" },
+    { 
+      name: "Premier League Final Day", 
+      date: "28 May", 
+      earnings: "£2,500-£8,000",
+      image: "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=600&h=300&fit=crop",
+      sponsors: ["Sky Sports", "Vodafone", "Barclays"],
+      status: "LIVE"
+    },
+    { 
+      name: "Wimbledon Championships", 
+      date: "15 July", 
+      earnings: "£1,800-£6,500",
+      image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=300&fit=crop",
+      sponsors: ["BBC Sport", "Rolex", "Evian"],
+      status: "SOON"
+    },
+    { 
+      name: "F1 British Grand Prix", 
+      date: "7 July", 
+      earnings: "£3,200-£12,000",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=300&fit=crop",
+      sponsors: ["Sky F1", "Red Bull", "Mercedes"],
+      status: "HOT"
+    },
   ];
 
   const creatorStats = [
-    { label: "Top Creator Earnings", value: "$45K/month", icon: DollarSign },
-    { label: "Average Event Payout", value: "$2.5K", icon: Trophy },
+    { label: "Top Creator Earnings", value: "£45K/month", icon: DollarSign },
+    { label: "Average Event Payout", value: "£2.5K", icon: Trophy },
     { label: "Monthly Events", value: "150+", icon: Calendar },
   ];
 
@@ -98,26 +119,51 @@ const CreatorLanding = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {upcomingEvents.map((event, index) => (
-              <Card key={index} className="p-6 hover-scale bg-card border-[hsl(var(--creator-border))] relative overflow-hidden">
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-[hsl(var(--creator-success))] text-white">
-                    {event.earnings}
-                  </Badge>
+              <Card key={index} className="overflow-hidden hover-scale bg-card border-[hsl(var(--creator-border))] relative group cursor-pointer">
+                <div className="relative h-48">
+                  <img 
+                    src={event.image} 
+                    alt={event.name}
+                    className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  
+                  <div className="absolute top-4 right-4">
+                    <Badge className={`
+                      ${event.status === 'LIVE' ? 'bg-[hsl(var(--creator-live))] animate-pulse' : ''}
+                      ${event.status === 'HOT' ? 'bg-[hsl(var(--creator-success))]' : ''}
+                      ${event.status === 'SOON' ? 'bg-[hsl(var(--creator-primary))]' : ''}
+                      text-white font-bold
+                    `}>
+                      {event.status}
+                    </Badge>
+                  </div>
+                  
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="text-2xl font-bold mb-1">{event.earnings}</div>
+                    <div className="text-sm opacity-90">Potential earnings</div>
+                  </div>
                 </div>
                 
-                <Calendar className="h-8 w-8 text-[hsl(var(--creator-primary))] mb-4" />
-                <h3 className="text-lg font-semibold mb-2 text-foreground">{event.name}</h3>
-                <p className="text-muted-foreground mb-4">{event.date}</p>
-                
-                <div className="flex gap-2">
-                  <Badge variant="outline" className="border-[hsl(var(--creator-border))]">Sports</Badge>
-                  <Badge variant="outline" className="border-[hsl(var(--creator-border))]">Premium</Badge>
-                  <Badge variant="outline" className="border-[hsl(var(--creator-border))]">Sponsored</Badge>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold mb-2 text-foreground">{event.name}</h3>
+                  <p className="text-muted-foreground mb-3">{event.date}</p>
+                  
+                  <div className="mb-4">
+                    <div className="text-xs text-muted-foreground mb-2">SPONSORS</div>
+                    <div className="flex flex-wrap gap-1">
+                      {event.sponsors.map((sponsor, sponsorIndex) => (
+                        <Badge key={sponsorIndex} variant="outline" className="text-xs border-[hsl(var(--creator-border))]">
+                          {sponsor}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <Button variant="gaming" className="w-full shadow-[var(--shadow-gaming)]">
+                    Apply to Stream
+                  </Button>
                 </div>
-                
-                <Button variant="gaming" className="w-full mt-4">
-                  Apply to Stream
-                </Button>
               </Card>
             ))}
           </div>
@@ -145,7 +191,7 @@ const CreatorLanding = () => {
               <Zap className="h-12 w-12 text-[hsl(var(--creator-primary))] mb-4" />
               <h3 className="text-xl font-semibold mb-4 text-foreground">Instant Growth</h3>
               <p className="text-muted-foreground mb-4">
-                Stream premium sports content that your audience can't find anywhere else. Average 300% viewership increase during events.
+                Stream premium sports content that your audience can't find anywhere else. Average 300% viewership increase during events with full DMCA protection.
               </p>
               <div className="text-sm font-medium text-[hsl(var(--creator-success))]">
                 • Exclusive content access
@@ -158,7 +204,7 @@ const CreatorLanding = () => {
               <DollarSign className="h-12 w-12 text-[hsl(var(--creator-success))] mb-4" />
               <h3 className="text-xl font-semibold mb-4 text-foreground">Multiple Revenue Streams</h3>
               <p className="text-muted-foreground mb-4">
-                Earn from event streaming, sponsor integrations, and audience growth. Top creators earn $45K+ monthly.
+                Earn from event streaming, sponsor integrations, and audience growth. Top creators earn £45K+ monthly with multiple revenue streams.
               </p>
               <div className="text-sm font-medium text-[hsl(var(--creator-success))]">
                 • Guaranteed event payouts

@@ -2,39 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Sports Streaming Platform Design System - Dual Theme Architecture */
 
 @layer base {
   :root {
+    /* Professional B2B Theme - Corporate & Sports Broadcasting */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
+    
+    /* Professional primary - Deep corporate blue */
+    --primary: 218 89% 22%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 218 89% 18%;
+    
+    /* Sports accent - Professional orange */
+    --sports-accent: 24 100% 50%;
+    --sports-accent-foreground: 0 0% 98%;
+    
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 218 89% 22%;
+    
+    /* Professional gradients */
+    --gradient-professional: linear-gradient(135deg, hsl(218 89% 22%), hsl(218 89% 35%));
+    --gradient-hero-professional: linear-gradient(135deg, hsl(218 89% 22%), hsl(24 100% 50%));
+    
+    /* Gaming Creator Theme Variables */
+    --creator-background: 250 24% 9%;
+    --creator-foreground: 270 20% 95%;
+    --creator-card: 250 24% 12%;
+    --creator-border: 250 24% 20%;
+    
+    /* Gaming primary - Vibrant purple */
+    --creator-primary: 270 91% 65%;
+    --creator-primary-foreground: 0 0% 98%;
+    --creator-primary-hover: 270 91% 55%;
+    
+    /* Success green for earnings */
+    --creator-success: 142 76% 36%;
+    --creator-success-foreground: 0 0% 98%;
+    
+    /* Live streaming red */
+    --creator-live: 0 84% 60%;
+    --creator-live-foreground: 0 0% 98%;
+    
+    /* Gaming gradients */
+    --gradient-gaming: linear-gradient(135deg, hsl(270 91% 65%), hsl(290 91% 55%));
+    --gradient-hero-gaming: linear-gradient(135deg, hsl(250 24% 9%), hsl(270 91% 25%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+    
+    /* Shared animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+    
+    /* Shadows */
+    --shadow-professional: 0 4px 20px -4px hsl(218 89% 22% / 0.25);
+    --shadow-gaming: 0 8px 32px -8px hsl(270 91% 65% / 0.4);
+    --shadow-glow: 0 0 40px hsl(270 91% 65% / 0.3);
 
     --radius: 0.5rem;
 
@@ -101,5 +137,62 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Gaming Theme Class */
+  .theme-gaming {
+    --background: var(--creator-background);
+    --foreground: var(--creator-foreground);
+    --card: var(--creator-card);
+    --card-foreground: var(--creator-foreground);
+    --popover: var(--creator-card);
+    --popover-foreground: var(--creator-foreground);
+    --primary: var(--creator-primary);
+    --primary-foreground: var(--creator-primary-foreground);
+    --border: var(--creator-border);
+    --input: var(--creator-border);
+    --ring: var(--creator-primary);
+  }
+}
+
+@layer components {
+  /* Professional Button Variants */
+  .btn-professional {
+    @apply bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-hover))] text-primary-foreground shadow-[var(--shadow-professional)] transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  .btn-sports-accent {
+    @apply bg-[hsl(var(--sports-accent))] text-[hsl(var(--sports-accent-foreground))] shadow-[var(--shadow-professional)] transition-[var(--transition-smooth)] hover:bg-[hsl(var(--sports-accent))]/90 hover:scale-105;
+  }
+  
+  /* Gaming Button Variants */
+  .btn-gaming {
+    @apply bg-gradient-to-r from-[hsl(var(--creator-primary))] to-[hsl(var(--creator-primary-hover))] text-[hsl(var(--creator-primary-foreground))] shadow-[var(--shadow-gaming)] transition-[var(--transition-smooth)] hover:scale-105 hover:shadow-[var(--shadow-glow)];
+  }
+  
+  .btn-success {
+    @apply bg-gradient-to-r from-[hsl(var(--creator-success))] to-[hsl(var(--creator-success))]/90 text-[hsl(var(--creator-success-foreground))] transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  .btn-live {
+    @apply bg-[hsl(var(--creator-live))] text-[hsl(var(--creator-live-foreground))] animate-pulse transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  /* Hero Gradients */
+  .hero-professional {
+    background: var(--gradient-hero-professional);
+  }
+  
+  .hero-gaming {
+    background: var(--gradient-hero-gaming);
+  }
+  
+  /* Interactive Elements */
+  .hover-scale {
+    @apply transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  .glow-gaming {
+    @apply shadow-[var(--shadow-glow)] transition-[var(--transition-smooth)];
   }
 }
